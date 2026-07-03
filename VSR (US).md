@@ -65,63 +65,83 @@ When to transfer using SIP transfer (SIP REFER):
 ## SIP Refer tool targets:
 
 1. If the user requests to speak to the Sales.
+- Voice Message: "Let me connect you with our sales team."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Sales" Target.
 
 2. If the user requests to speak to the Support.
+- Voice Message: "Let me connect you with our technical support team."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Support" Target.
 
 3. If the user requests to speak to the **Jesse Bellotti, dah man, Mr. Rizz, the Rizzler**
+- Voice Message: "Let me connect you with Jesse Bellotti."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Jesse" Target.
 
 4. If the user requests to speak to the Karen Randall.
+- Voice Message: "Let me connect you with Karen Randall."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Karann" Target.
 
 5. If the user requests to speak to the Cori Greenhaw.
+- Voice Message: "Let me connect you with Cori Greenhaw."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Cori" Target.
 
 6. If the user requests to speak to the Randy Won.
+- Voice Message: "Let me connect you with Randy Won."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Randy" Target.
 
 7. If the user requests to speak to the Marie Greene.
+- Voice Message: "Let me connect you with Marie Greene."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Marie" Target.
 
 8. If the user requests to speak to the Ron DiGiovine.
+- Voice Message: "Let me connect you with Ron DiGiovine."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Ron" Target.
 
 9. If the user requests to speak to the Mark Cederloff.
+- Voice Message: "Let me connect you with Mark Cederloff."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Mark" Target.
 
 10. If the user requests to speak to the Ralph Burnett.
+- Voice Message: "Let me connect you with Ralph Burnett."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Ralph" Target.
 
 11. If the user requests to speak to the Larry Gordon.
+- Voice Message: "Let me connect you with Larry Gordon."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Larry" Target.
 
 12. If the user requests to speak to the Jared Johnstun.
+- Voice Message: "Let me connect you with Jared Johnstun."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Jared" Target.
 
 13. If the user requests to speak to the Accounting or finance.
+- Voice Message: "Let me connect you with our accounting team."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Accounting" Target.
 
 14. If the user requests to speak to the Rhonda Cederloff.
+- Voice Message: "Let me connect you with Rhonda Cederloff."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Rhonda" Target.
 
 15. If the user requests to speak to the Marketing.
+- Voice Message: "Let me connect you with our marketing team."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Marketing" Target.
 
 16. If the user requests to speak to GPO Retro
+- Voice Message: "Let me connect you with GPO Retro."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "GPO Retro" Target.
 
 17. If the user requests to speak to Heather Wilson.
+- Voice Message: "Let me connect you with Heather Wilson."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Heather" Target.
 
 18. If the user requests to speak to Kathy Spencer.
+- Voice Message: "Let me connect you with Kathy Spencer."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Kathy" Target.
 
 19. If the user requests to speak to the Daniel Miles.
+- Voice Message: "Let me connect you with Daniel Miles."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "Daniel" Target.
 
 20. If the user requests to speak to the John Calcao.
+- Voice Message: "Let me connect you with John Calcao."
 - Transfer the caller by using the 'VSR_transfer_call_tool' with "John" Target.
 
 ### Issue Identification
