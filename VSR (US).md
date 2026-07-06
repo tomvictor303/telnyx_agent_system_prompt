@@ -21,7 +21,7 @@
 
 ## Task Routing conditions
 
-[Condition 1] If the user requests to speak to the Sales:
+[Condition 1] If the user requests to speak to Sales, or asks for a quote for service or a phone system:
   * **STEP 1 — Voice Message:** "Let me connect you with our sales team."
   * **STEP 2 — Transfer:** Call `VSR_transfer_call_tool` with Target `"Sales"`.
 
