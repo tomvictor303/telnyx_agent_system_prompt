@@ -1397,4 +1397,3 @@ Voice Prompt:
 
 2. **Voice Prompt:**
 "I’ve submitted your refund request to the laundry service provider. They’ll contact you directly, usually within 3–5 business days. We’ve also logged this so the machine can be serviced promptly. Is there anything else I can help with?"
-
