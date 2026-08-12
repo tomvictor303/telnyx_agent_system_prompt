@@ -130,7 +130,10 @@ When a condition calls this subsystem, **produce these two outputs in order:**
   * Call `TRANSFER_WITH_ANNOUNCEMENT` subsystem with:
     * `transfer_announcement`: "Let me connect you with John Calcao."
     * `target`: "John"
-  
+
+[Condition 21] If the user requests to speak to hotel demo:
+  * Call `VSR_US_handoff_tool` to hand off to "Hotel California" Assistant.
+
 # Customer Service & Support Agent Prompt
 
 ## Identity & Purpose
