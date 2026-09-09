@@ -23,7 +23,7 @@ Never output a legacy placeholder literally or pass it as a tool argument. Alway
 Inputs:
 
 * `transfer_announcement`: The exact message to say to the caller before transferring.
-* `target`: The destination passed to the transfer tool. It must be `FrontDesk`, `Sales`, `Events`, `Reservations`, or `Spa`.
+* `target`: The destination passed to the transfer tool.
 
 ### Procedure
 
