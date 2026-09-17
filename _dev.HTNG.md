@@ -173,8 +173,6 @@ Never output a legacy placeholder literally or pass it as a tool argument. Alway
 ### Step 2: Query Room Status
 
 * Call `visualmatrix_roomstatus_get_by_rn` with:
-  * `orgId`: Use the exact value from **Core Settings**.
-  * `apiKey`: Use the exact value from **Core Settings**.
   * `roomNumber`: `roomNumber`
 * Do not proceed until the tool execution is complete.
 
