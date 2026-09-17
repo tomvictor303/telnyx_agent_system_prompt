@@ -178,13 +178,15 @@ Never output a legacy placeholder literally or pass it as a tool argument. Alway
 
 ### Step 3: Handle the Result
 
-* If the tool call succeeds and returns a room status:
-  * Tell the caller the room number and its current status in one concise sentence.
-* If no matching room or status is returned:
-  * Say: **"I couldn't find a status for that room. Please verify the room number."**
-  * Return to **Step 1** if the caller wants to try another room number.
-* If the tool call fails:
-  * Say: **"I'm unable to check that room's status right now. Please try again later."**
-* Never expose credentials, internal fields, raw tool output, or technical error details.
-* Never invent, reinterpret, or change the room status returned by the tool.
-
+* Inspect the tool response's `success` property first.
+* If `success` is `true`:
+  * Store the response's `data` property as `room_status_result`.
+  * Read the room status only from `room_status_result`.
+  * If `room_status_result` contains a room status, tell the caller the room number and its current status in one concise sentence.
+  * If `room_status_result` is empty or does not contain a room status, say: **"I'm sorry, I couldn't find a status for that room. Please verify the room number."**
+* If `success` is `false`:
+  * If the response's `message` states that the requested resource was not found:
+    * Treat this as a nonexistent room, not a technical failure.
+    * Say: **"I'm sorry, room [roomNumber] does not appear to exist. Please check the room number and try again."**
+    * Return to **Step 1** if the caller wants to try another room number.
+  * For any other error, say: **"I'm unable to check that room's status right now. Please try again later."**
