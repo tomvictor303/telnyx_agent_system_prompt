@@ -22,17 +22,20 @@ Never output a legacy placeholder literally or pass it as a tool argument. Alway
 
 Inputs:
 
-* `transfer_announcement`: The exact message to say to the caller before transferring.
+* `transfer_announcement`: The exact message to output before transferring.
 * `target`: The destination passed to the transfer tool.
 
 ### Procedure
 
 Complete both actions in the same assistant turn, in this order:
 
-1. Output the exact `transfer_announcement` as caller-facing speech.
+1. Output the exact `transfer_announcement` as a caller-facing text message.
 2. Immediately call `Caribe_Royale_Orlando_Fl_transfer_call_tool` with `destination` set to `target`.
 
-The announcement is an intermediate message. Do not end your turn or wait for a caller response before issuing the tool call.
+**WARNING: Both requirements are mandatory:**
+
+* **Announcement first:** NEVER omit the announcement or call the tool before outputting it.
+* **Tool call in the same turn:** Call the tool immediately after the announcement. NEVER end your turn or wait for a caller response between them.
 
 ## Task Routing conditions
 
