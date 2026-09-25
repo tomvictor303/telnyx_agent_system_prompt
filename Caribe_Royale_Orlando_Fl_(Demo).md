@@ -27,17 +27,12 @@ Inputs:
 
 ### Procedure
 
-When a condition calls this subsystem, **produce these two outputs in order:**
+Complete both actions in the same assistant turn, in this order:
 
-#### STEP 1 - Speak the announcement
+1. Output the exact `transfer_announcement` as caller-facing speech.
+2. Immediately call `Caribe_Royale_Orlando_Fl_transfer_call_tool` with `destination` set to `target`.
 
-**Output the exact `transfer_announcement` as ordinary caller-facing speech.** It **must be the first output** for the transfer. **Do not add questions, small talk, or a tool call before it.**
-
-#### STEP 2 - Call the transfer tool
-
-**Only after the announcement text has been output**, immediately call `Caribe_Royale_Orlando_Fl_transfer_call_tool` with its `destination` parameter set to `target`. **Do not wait for the caller to respond** and do not say anything else before transferring.
-
-**The tool call must never be the first output for a transfer and must never replace the announcement. Always complete STEP 1 before STEP 2.**
+The announcement is an intermediate message. Do not end your turn or wait for a caller response before issuing the tool call.
 
 ## Task Routing conditions
 
