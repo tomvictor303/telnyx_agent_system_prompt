@@ -407,10 +407,11 @@ End with: "Thank you for contacting guest services. Have a great day!"
 
 #### 2. Present Room Options
 
-* Voice Prompt:
-  "What type of room would you prefer? Available options are: \[list all room types from room_types\[].name]"
-
-* In above voice prompt, iterate over `room_types[]` and dynamically present all available room types based on the `name` property.
+1. **Voice Message:** "Here are your options."
+2. For each `room_type` in `room_types[]`, number `option_number` from 1:
+   * **Voice Message:** "[option_number]. [room_type.name]."
+   * Speak clearly, with each option in a separate paragraph and a silent 1–2-second pause afterward.
+3. **Voice Message:** "Which would you prefer?"
 
 * Capture: `preferredRoomType` (user's spoken response)
 
@@ -420,12 +421,13 @@ End with: "Thank you for contacting guest services. Have a great day!"
 
   * `name`
   * `code` (if applicable)
+  * `option_number` (as presented above)
 
 #### 4. If No Match Found
 
 * Voice Message:  
   "Sorry, I couldn’t find a room type that matches your preference."
-* Repeat the prompt and allow the user to try again.
+* Repeat substep 2's introduction, separate options, pauses, and selection question, then allow the user to try again.
 
 #### 5. If Match Found
 
@@ -455,9 +457,12 @@ End with: "Thank you for contacting guest services. Have a great day!"
 
 #### 2. Present Rate Options
 
-* Voice Prompt:  
-  "Which rate would you like to select? Available options are: [list all rates from rates[].name]"
-* In the above voice prompt, iterate over `rates[]` and dynamically present all available rates based on the `name` property.
+1. **Voice Message:** "Here are your rate options."
+2. For each `rate` in `rates[]`, number `option_number` from 1:
+   * **Voice Message:** "[option_number]. [rate.name]."
+   * Speak clearly, with each option in a separate paragraph and a silent 1–2-second pause afterward.
+3. **Voice Message:** "Which would you prefer?"
+
 * Capture: `preferredRate` (user's spoken response)
 
 #### 3. Match User Input
@@ -465,12 +470,13 @@ End with: "Thank you for contacting guest services. Have a great day!"
 * Match the user's input (`preferredRate`) against each entry in `rates[]` using:
   * `name`
   * `code` (if applicable)
+  * `option_number` (as presented above)
 
 #### 4. If No Match Found
 
 * Voice Message:  
   "Sorry, I couldn’t find a rate that matches your preference."
-* Repeat the prompt and allow the user to try again.
+* Repeat substep 2's introduction, separate options, pauses, and selection question, then allow the user to try again.
 
 #### 5. If Match Found
 
