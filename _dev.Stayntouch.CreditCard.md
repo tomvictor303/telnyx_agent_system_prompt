@@ -322,7 +322,7 @@ End with: "Thank you for contacting guest services. Have a great day!"
 
 # Stayntouch System Guidelines
 ## Core Settings
-* **For all tools prefixed with `stayntouch_`, except `stayntouch_telnyx_cc_capture_tool`, set the following parameters exactly**:
+* **For all tools prefixed with `stayntouch_`, set the following parameters exactly**:
 
   * `orgId`: -1
   * `apiKey`: "vsr_demo_123"
@@ -635,9 +635,10 @@ Note: This substep is only executed as a fallback when `guest_id` is not capture
 
 #### 2. Start Secure Credit Card Capture
 
+* `demo_cc_capture_tool` is the credit card capture tool configured for the demo property. Each hotel requires its own configured capture tool.
 * Keep `draft_id` available when control returns from the secure session.
 * First output: **"Please follow the secure card-entry prompts to complete your reservation."**
-* Immediately call `stayntouch_telnyx_cc_capture_tool` in the same assistant turn with only:
+* Immediately call `demo_cc_capture_tool` in the same assistant turn with only:
   * `amount`: 0
   * `method`: "tokenize"
   * `transaction_type`: "tokenize"
