@@ -649,11 +649,12 @@ Note: This substep is only executed as a fallback when `guest_id` is not capture
 
 #### 3. Wait for Credit Card Capture Completion
 
-* Starting the session is not successful completion. A start acknowledgement or progress event does not permit proceeding.
+* `demo_cc_capture_tool` returns plain text, not `response.success` or `response.data`. Use only this tool's response to determine the capture outcome.
+* Starting the session is not successful completion. A start acknowledgement or progress update does not permit proceeding.
 * While capture is active, let the secure session control the interaction. Do not ask questions, call other tools, start another capture session, or end the call because of silence. This overrides general silence and end-call rules during capture.
-* Continue only after the active session's final completion result confirms success. For native events, this is `call.payment.completed` with `result: "success"`; `call.payment.progress` is not sufficient.
-* After successful completion, proceed to substep 4 using the saved `draft_id`.
-* If capture fails to start, completes unsuccessfully, or is cancelled:
+* **Success:** The tool response starts with `Payment completed successfully.` It may include masked card details afterward. Proceed to substep 4 using the saved `draft_id`.
+* **Failure or cancellation:** A response such as `Payment completed with status: too-many-failed-attempts` or `Payment completed with status: cancelled` is not success. The words "Payment completed" alone do not confirm successful capture.
+* If capture fails to start or the tool reports any unsuccessful status:
   * Do not proceed to reservation confirmation or send a confirmation SMS.
   * If the caller is still connected, output: **"Credit card capture wasn't completed. I can't confirm your reservation. Please contact the front desk for assistance."**
   * **Exit this subsystem and return to general conversation.**
