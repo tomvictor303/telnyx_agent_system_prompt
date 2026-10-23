@@ -525,7 +525,7 @@ End with: "Thank you for contacting guest services. Have a great day!"
 
 #### 3. **Confirmation to proceed**
 **Voice Prompt:**
-"A credit card is required to complete this reservation. Would you like to proceed?"
+"Are you okay with this price?"
 
 **Condition:**
 
@@ -631,45 +631,52 @@ Note: This substep is only executed as a fallback when `guest_id` is not capture
   * **Caller Message:** "I'm sorry, I couldn't prepare your reservation. Please try again later."
   * **Exit this subsystem and return to general conversation.**
 
-#### 2. Start Secure Credit Card Capture
+#### 2. Voice Message
 
-* First output: **"Please follow the secure card-entry prompts to complete your reservation."**
-* Immediately call `demo_cc_capture_tool` in the same assistant turn with only:
+* **Voice Prompt:** "A credit card is required to complete this reservation. Would you like to proceed?"
+* Wait for the user's answer.
+* If the user says **"Yes"**, continue to substep 3.
+* If the user says **"No"**, exit the subsystem and return to general conversation.
+
+#### 3. Start Secure Credit Card Capture
+
+* Call `demo_cc_capture_tool` with the following properties:
   * `amount`: 0
   * `method`: "tokenize"
   * `transaction_type`: "tokenize"
   * `description`: The saved `draft_id` as a string, with no added text.
-* Tokenization does not mean the reservation has been paid.
+* Wait for the tool result.
+* Knowledge Note: Tokenization does not mean the reservation has been paid.
 
-#### 3. Check Capture Result
+#### 4. Check Capture Result
 
-* If `demo_cc_capture_tool`'s response starts with `Payment completed successfully.`, proceed to substep 4 using the saved `draft_id`.
-* For any other response, tool error, or missing result:
+* If `demo_cc_capture_tool`'s response starts with `Payment completed successfully.`, proceed to substep 5 using the saved `draft_id`.
+* If the completed tool call returns any other response (including an empty response), or reports an execution error:
   * Do not confirm the reservation, send a confirmation SMS, or restart capture.
-  * If the caller is still connected, output: **"I can't confirm your reservation. Please contact the front desk for assistance."**
+  * If the caller is still connected, output: **"I'm sorry, I couldn't obtain your card information. Please contact the front desk for assistance."**
   * **Exit this subsystem and return to general conversation.**
 
-#### 4. Retrieve the Reservation by Draft ID
+#### 5. Retrieve the Reservation by Draft ID
 
 * Call `stayntouch_reservations_by_draft_id_tool` with the credentials from **Core Settings** and:
   * `draft_id`: The saved `draft_id`.
 * Wait for the tool result.
 * If `response.success` is `true` and `response.data` contains the created reservation and its `confirmation_number`:
   * Store `response.data` as `CreatedFirstReservation`.
-  * Proceed to substep 5.
+  * Proceed to substep 6.
 * If the lookup fails, returns no reservation, or lacks a confirmation number:
   * **Caller Message:** "Your card capture completed, but I can't confirm your reservation yet. Please contact the front desk for assistance."
   * Do not send a confirmation SMS or claim the reservation succeeded or failed.
   * If the caller asks to recheck, repeat only this lookup using the same `draft_id`. Do not save another draft or restart card capture because the reservation is not yet available.
   * Otherwise, **exit this subsystem and return to general conversation.**
 
-#### 5. Send Confirmation SMS
+#### 6. Send Confirmation SMS
 
-* Proceed only after successful card capture and successful reservation retrieval in substep 4.
+* Proceed only after successful card capture and successful reservation retrieval in substep 5.
 * Send an SMS using the `telnyx_sms_tool` with {{customer.number}} as the recipient and "Your reservation is confirmed. Your reservation number is \[CreatedFirstReservation.confirmation_number]" as the text.
 * If SMS delivery fails, inform the caller and provide the retrieved confirmation number. Do not repeat reservation creation or card capture.
 
-#### 6. Confirmation and Closing
+#### 7. Confirmation and Closing
 
 * **Caller Message:** "Your reservation is confirmed. Your reservation number is [CreatedFirstReservation.confirmation_number]. Would you like assistance with anything else?"
 
